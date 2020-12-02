@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personal_expense_app/transaction.dart';
+import 'package:intl/intl.dart';
+
 import './transaction.dart';
 
 void main() => runApp(MyApp());
@@ -17,15 +19,15 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   final List<Transaction> transactions = [
     Transaction(
-      id: 't1', 
-      title: "New Shoes", 
-      amount: 69.99, 
+      id: 't1',
+      title: "New Shoes",
+      amount: 69.99,
       date: DateTime.now(),
     ),
     Transaction(
-      id: 't2', 
-      title: "New Pant", 
-      amount: 109.99, 
+      id: 't2',
+      title: "New Pant",
+      amount: 109.99,
       date: DateTime.now(),
     ),
   ];
@@ -51,13 +53,57 @@ class MyHomePage extends StatelessWidget {
                 elevation: 5,
               ),
             ),
-            Column(children: transactions.map((tx) {
-              return Card(child: Text(tx.title),);
-            }).toList(), ),
+            Column(
+              children: transactions.map((tx) {
+                return Card(
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 15,
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.purple,
+                            width: 2,
+                          ),
+                        ),
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          '\$${tx.amount}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.purple,
+                          ),
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            tx.title,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            DateFormat.yMMMd().add_jm().format(tx.date),
+                            style: TextStyle(color: Colors.grey
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
           ],
-        )   
-    );
+        ));
   }
 }
 
-// Video 72
+// Video 83
