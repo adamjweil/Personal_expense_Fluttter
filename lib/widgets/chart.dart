@@ -23,8 +23,8 @@ class Chart extends StatelessWidget {
         }
       }
 
-      print(DateFormat.E().format(weekDay).substring(0, 1));
-      print(totalSum);
+      // print(DateFormat.E().format(weekDay).substring(0, 1));
+      // print(totalSum);
 
       return {'day': DateFormat.E().format(weekDay), 'amount': totalSum};
     }).reversed.toList();
